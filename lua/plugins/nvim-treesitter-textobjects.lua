@@ -14,9 +14,8 @@ return {
     end,
     config = function()
         require("nvim-treesitter-textobjects").setup {
-            select = {
-                lookahead = true,
-            }
+            select = { lookahead = true },
+            move = { set_jumps = true },
         }
 
         -- Select
@@ -90,5 +89,37 @@ return {
         	end,
 			{ desc = "Select inner parameter (input)" }
 		)
+
+        -- Swap
+        vim.keymap.set("n", "<leader>ef", function()
+            require("nvim-treesitter-textobjects.swap").swap_next "@function.outer"
+            end,
+            { desc = "Swap function with the next function" }
+        )
+        vim.keymap.set("n", "<leader>eF", function()
+            require("nvim-treesitter-textobjects.swap").swap_previous "@function.outer"
+            end,
+            { desc = "Swap function with the previous function" }
+        )
+        vim.keymap.set("n", "<leader>ec", function()
+            require("nvim-treesitter-textobjects.swap").swap_next "@class.outer"
+            end,
+            { desc = "Swap class with the next class" }
+        )
+        vim.keymap.set("n", "<leader>eC", function()
+            require("nvim-treesitter-textobjects.swap").swap_previous "@class.outer"
+            end,
+            { desc = "Swap class with the previous class" }
+        )
+        vim.keymap.set("n", "<leader>ei", function()
+            require("nvim-treesitter-textobjects.swap").swap_next "@parameter.outer"
+            end,
+            { desc = "Swap parameter with the next parameter" }
+        )
+        vim.keymap.set("n", "<leader>eI", function()
+            require("nvim-treesitter-textobjects.swap").swap_previous "@parameter.outer"
+            end,
+            { desc = "Swap parameter with the previous parameter" }
+        )
     end,
 }
