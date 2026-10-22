@@ -80,6 +80,36 @@ return {
         	end,
 			{ desc = "Select inner parameter (input)" }
 		)
+        vim.keymap.set({ "x", "o" }, "aa", function()
+            ts_select.select_textobject("@assignment.outer", "textobjects")
+        	end,
+			{ desc = "Select around assignment" }
+		)
+        vim.keymap.set({ "x", "o" }, "iaa", function()
+            ts_select.select_textobject("@assignment.inner", "textobjects")
+        	end,
+			{ desc = "Select inner assignment" }
+		)
+        vim.keymap.set({ "x", "o" }, "ial", function()
+            ts_select.select_textobject("@assignment.lhs", "textobjects")
+        	end,
+			{ desc = "Select assignment left-hand side (LHS)" }
+		)
+        vim.keymap.set({ "x", "o" }, "iar", function()
+            ts_select.select_textobject("@assignment.rhs", "textobjects")
+        	end,
+			{ desc = "Select assignment right-hand side (RHS)" }
+		)
+        vim.keymap.set({ "x", "o" }, "agc", function()
+            ts_select.select_textobject("@comment.outer", "textobjects")
+        	end,
+			{ desc = "Select arround comment" }
+		)
+        vim.keymap.set({ "x", "o" }, "igc", function()
+            ts_select.select_textobject("@comment.inner", "textobjects")
+        	end,
+			{ desc = "Select inner comment" }
+		)
 
         -- Swap
         local ts_swap = require "nvim-treesitter-textobjects.swap"
@@ -113,6 +143,16 @@ return {
             end,
             { desc = "Swap parameter with the previous parameter" }
         )
+        vim.keymap.set("n", "<leader>ea", function()
+            ts_swap.swap_next "@assignment.outer"
+            end,
+            { desc = "Swap assignment with the next assignment" }
+        )
+        vim.keymap.set("n", "<leader>eA", function()
+            ts_swap.swap_previous "@assignment.outer"
+            end,
+            { desc = "Swap assignment with the previous assignment" }
+        )
 
         -- Move
         local ts_move = require "nvim-treesitter-textobjects.move"
@@ -141,6 +181,26 @@ return {
             end,
             { desc = "Move to next block" }
         )
+        vim.keymap.set({ "n", "x", "o" }, "]aa", function()
+            ts_move.goto_next_start("@assignment.outer", "textobjects")
+            end,
+            { desc = "Move to next assignment" }
+        )
+        vim.keymap.set({ "n", "x", "o" }, "]al", function()
+            ts_move.goto_next_start("@assignment.lhs", "textobjects")
+            end,
+            { desc = "Move to next assignment LHS" }
+        )
+        vim.keymap.set({ "n", "x", "o" }, "]ar", function()
+            ts_move.goto_next_start("@assignment.rhs", "textobjects")
+            end,
+            { desc = "Move to next assignment RHS" }
+        )
+        vim.keymap.set({ "n", "x", "o" }, "]gc", function()
+            ts_move.goto_next_start("@comment.outer", "textobjects")
+            end,
+            { desc = "Move to next comment" }
+        )
         vim.keymap.set({ "n", "x", "o" }, "[m", function()
             ts_move.goto_previous_start("@function.outer", "textobjects")
             end,
@@ -165,6 +225,26 @@ return {
             ts_move.goto_previous_start("@block.outer", "textobjects")
             end,
             { desc = "Move to previous block" }
+        )
+        vim.keymap.set({ "n", "x", "o" }, "[aa", function()
+            ts_move.goto_previous_start("@assignment.outer", "textobjects")
+            end,
+            { desc = "Move to previous assignment" }
+        )
+        vim.keymap.set({ "n", "x", "o" }, "[al", function()
+            ts_move.goto_previous_start("@assignment.lhs", "textobjects")
+            end,
+            { desc = "Move to previous assignment LHS" }
+        )
+        vim.keymap.set({ "n", "x", "o" }, "[ar", function()
+            ts_move.goto_previous_start("@assignment.rhs", "textobjects")
+            end,
+            { desc = "Move to previous assignment RHS" }
+        )
+        vim.keymap.set({ "n", "x", "o" }, "[gc", function()
+            ts_move.goto_previous_start("@comment.outer", "textobjects")
+            end,
+            { desc = "Move to previous comment" }
         )
         local ts_repeat_move = require "nvim-treesitter-textobjects.repeatable_move"
         vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
