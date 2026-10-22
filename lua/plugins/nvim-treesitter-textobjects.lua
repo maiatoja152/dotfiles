@@ -50,12 +50,12 @@ return {
         	end,
 			{ desc = "Select inner class" }
 		)
-        vim.keymap.set({ "x", "o" }, "al", function()
+        vim.keymap.set({ "x", "o" }, "ao", function()
             ts_select.select_textobject("@loop.outer", "textobjects")
         	end,
 			{ desc = "Select around loop" }
 		)
-        vim.keymap.set({ "x", "o" }, "il", function()
+        vim.keymap.set({ "x", "o" }, "io", function()
             ts_select.select_textobject("@loop.inner", "textobjects")
         	end,
 			{ desc = "Select inner loop" }
@@ -171,7 +171,7 @@ return {
             end,
             { desc = "Move to next class" }
         )
-        vim.keymap.set({ "n", "x", "o" }, "]l", function()
+        vim.keymap.set({ "n", "x", "o" }, "]o", function()
             ts_move.goto_next_start("@loop.outer", "textobjects")
             end,
             { desc = "Move to next loop" }
@@ -216,7 +216,7 @@ return {
             end,
             { desc = "Move to previous class" }
         )
-        vim.keymap.set({ "n", "x", "o" }, "[l", function()
+        vim.keymap.set({ "n", "x", "o" }, "[o", function()
             ts_move.goto_previous_start("@loop.outer", "textobjects")
             end,
             { desc = "Move to previous loop" }
