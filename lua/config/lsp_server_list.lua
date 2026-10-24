@@ -6,4 +6,6 @@ return {
 	"lua_ls",
 	"yamlls",
 	"docker_language_server",
+    "ts_ls",
+    "eslint",
 }
