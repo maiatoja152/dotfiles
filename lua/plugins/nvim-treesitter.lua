@@ -12,6 +12,10 @@ return {
 			"css",
 			"htmldjango",
 			"yaml",
+            "git_rebase",
+            "gitcommit",
+            "gitignore",
+            "diff", -- For git diffs
 		})
 	end
 }
