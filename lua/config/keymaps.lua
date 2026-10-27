@@ -9,7 +9,6 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 -- Terminal
 vim.keymap.set("n", "<leader>t", "<cmd>split<CR><cmd>terminal<CR>a", { desc = "Split and open terminal" })
 vim.keymap.set("n", "<leader>T", "<cmd>vsplit<CR><cmd>terminal<CR>a", { desc = "Split vertically and open terminal" })
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Windows
 vim.keymap.set("n", "<leader>s", "<cmd>split<CR>", { desc = "Split window" })
