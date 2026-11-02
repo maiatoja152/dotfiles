@@ -103,12 +103,22 @@ return {
         vim.keymap.set({ "x", "o" }, "agc", function()
             ts_select.select_textobject("@comment.outer", "textobjects")
         	end,
-			{ desc = "Select arround comment" }
+			{ desc = "Select around comment" }
 		)
         vim.keymap.set({ "x", "o" }, "igc", function()
             ts_select.select_textobject("@comment.inner", "textobjects")
         	end,
 			{ desc = "Select inner comment" }
+		)
+        vim.keymap.set({ "x", "o" }, "ir", function()
+            ts_select.select_textobject("@return.inner", "textobjects")
+        	end,
+			{ desc = "Select inner return" }
+		)
+        vim.keymap.set({ "x", "o" }, "ar", function()
+            ts_select.select_textobject("@return.outer", "textobjects")
+        	end,
+			{ desc = "Select around return" }
 		)
 
         -- Swap
