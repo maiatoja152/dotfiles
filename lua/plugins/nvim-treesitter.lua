@@ -16,6 +16,7 @@ return {
             "gitcommit",
             "gitignore",
             "diff", -- For git diffs
+            "bicep",
 		})
 	end
 }
