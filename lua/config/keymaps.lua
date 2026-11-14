@@ -6,10 +6,6 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Write" })
 vim.keymap.set("n", "<leader>W", "<cmd>wq<CR>", { desc = "Write and quit" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 
--- Terminal
-vim.keymap.set("n", "<leader>t", "<cmd>split<CR><cmd>terminal<CR>a", { desc = "Split and open terminal" })
-vim.keymap.set("n", "<leader>T", "<cmd>vsplit<CR><cmd>terminal<CR>a", { desc = "Split vertically and open terminal" })
-
 -- Windows
 vim.keymap.set("n", "<leader>s", "<cmd>split<CR>", { desc = "Split window" })
 vim.keymap.set("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
