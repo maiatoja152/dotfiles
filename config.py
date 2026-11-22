@@ -20,6 +20,7 @@ enable_catppuccin_theme("latte")
 c.auto_save.session = True
 c.editor.command = ["nvim", "{file}"]
 c.tabs.position = "left"
+c.tabs.last_close = "default-page"
 c.content.blocking.enabled = True
 # For Enthium keyboard layout
 c.hints.chars = "ciaehtns"
