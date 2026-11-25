@@ -9,4 +9,5 @@ return {
     "ts_ls",
     "eslint",
     "bicep",
+    "nil_ls", -- For nix
 }
