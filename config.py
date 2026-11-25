@@ -1,5 +1,6 @@
 import os
 from urllib.request import urlopen
+import subprocess
 
 
 config.load_autoconfig(False)
@@ -15,10 +16,37 @@ def enable_catppuccin_theme(theme_type: str) -> None:
     if os.path.exists(config.configdir / "catppuccin.py"):
         import catppuccin
         catppuccin.setup(c, theme_type, True)
-enable_catppuccin_theme("latte")
+
+
+def is_dark_theme_enabled() -> bool:
+    """Get whether dark theme is enabled. Note this only works on Linux"""
+    completed_process = subprocess.run(
+        [
+            "dbus-send",
+            "--session",
+            "--print-reply=literal",
+            "--dest=org.freedesktop.portal.Desktop",
+            "/org/freedesktop/portal/desktop",
+            "org.freedesktop.portal.Settings.Read",
+            "string:org.freedesktop.appearance",
+            "string:color-scheme"
+        ],
+        capture_output=True,
+        check=True,
+        text=True,
+    )
+    return completed_process.stdout.strip()[-1] == "1"
+
+
+if (is_dark_theme_enabled()):
+    c.colors.webpage.preferred_color_scheme = "dark"
+    enable_catppuccin_theme("mocha")
+else:
+    c.colors.webpage.preferred_color_scheme = "light"
+    enable_catppuccin_theme("latte")
 
 c.auto_save.session = True
-c.editor.command = ["nvim", "{file}"]
+c.editor.command = ["kitty", "nvim", "{file}"]
 c.tabs.position = "left"
 c.tabs.last_close = "default-page"
 c.content.blocking.enabled = True
@@ -30,7 +58,6 @@ default_page =  "qute://help"
 c.url.default_page = default_page
 c.url.start_pages = default_page
 c.url.searchengines = { "DEFAULT": "https://www.google.com/search?q={}" }
-c.colors.webpage.preferred_color_scheme = "auto"
 
 config.unbind("M", mode="normal")
 config.unbind("m", mode="normal")
@@ -51,3 +78,5 @@ config.unbind("<Ctrl-p>", mode="command")
 config.bind("<Ctrl-p>", "completion-item-focus prev", mode="command")
 config.unbind("<Ctrl-n>", mode="command")
 config.bind("<Ctrl-n>", "completion-item-focus next", mode="command")
+
+config.bind("<Ctrl-Escape>", "fake-key <Escape>", mode="insert")
