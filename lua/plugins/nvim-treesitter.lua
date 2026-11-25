@@ -17,6 +17,7 @@ return {
             "gitignore",
             "diff", -- For git diffs
             "bicep",
+            "nix",
 		})
 	end
 }
