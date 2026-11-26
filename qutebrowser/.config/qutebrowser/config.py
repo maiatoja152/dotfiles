@@ -40,6 +40,7 @@ def is_dark_theme_enabled() -> bool:
 
 if (is_dark_theme_enabled()):
     c.colors.webpage.preferred_color_scheme = "dark"
+    c.colors.webpage.darkmode.enabled = True
     enable_catppuccin_theme("mocha")
 else:
     c.colors.webpage.preferred_color_scheme = "light"
